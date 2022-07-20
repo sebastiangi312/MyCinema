@@ -1,13 +1,27 @@
 <%@include file="header.jsp" %>
-<h1><a href="./PeliculasUsuario"> Peliculas</a></h1>
-<c:if test="${sessionScope.aPersona  == null}">
-    <td  style=" width: 15% ; text-align: center">
-        <h1><a href="./LogIn">Votar Peliculas</a></h1>
-    </td>
-</c:if>
-<c:if test="${sessionScope.aPersona  != null}">
-    <td  style=" width: 15% ; text-align: center">
-        <h1><a href="./VotarPeliculas"> Votar Peliculas </a></h1>
-    </td>
-</c:if>
+<div class="container">
+    <div class="row">
+       <div class="card col-sm-2 mt-3">
+           <div class="card-body">
+                <h5 class="card-title">Movies</h5>
+                <p class="card-text">Click the button below to go to our catalog of movies</p>
+                <button class="btn btn-primary"   onclick="window.location.href='./PeliculasUsuario';">
+                    Go to Catalog
+                </button>
+            </div>
+        </div>
+    <div class="col-sm-2"></div>
+        <c:if test="${sessionScope.aPersona  != null}">
+        <div class="card col-2 mt-3 ms-2">
+            <div class="card-body">
+                <h5 class="card-title">Vote Movie</h5>
+                <p class="card-text">Click the button below to leave your vote for a movie</p>
+                <button class="btn btn-info"   onclick="window.location.href='./VotarPeliculas';">
+                    Vote Movie
+                </button>
+            </div>
+        </div>
+        </c:if>
+    </div>
+</div>
 <%@include file="footer.jsp" %>
