@@ -65,6 +65,8 @@ public class Comprar extends HttpServlet {
         request.setAttribute("multiArreglo", multiArreglo);
         request.setAttribute("peliculaHora", peliculaHora);
         request.setAttribute("sillasDisponibles", funcion.getSillasDisponibles());
+        request.setAttribute("funcion", funcion);
+        request.setAttribute("pelicula", peliculaHora);
         RequestDispatcher view = request.getRequestDispatcher("comprar.jsp");
         view.forward(request, response);
     }
@@ -85,6 +87,8 @@ public class Comprar extends HttpServlet {
 
             }
         }
+        if(!tiquetesComprados.isEmpty()){
+            
         Persona p = (Persona) session.getAttribute("aPersona");
 
         Factura factura = new Factura(p.getNombre().concat(" " + p.getApellido()));
@@ -107,6 +111,9 @@ public class Comprar extends HttpServlet {
         session.setAttribute("tiquetesComprados", tiquetesComprados);
         RequestDispatcher view = request.getRequestDispatcher("factura.jsp");
         view.forward(request, response);
+        }else{
+            this.doGet(request, response);
+        }
     }
 
     @Override

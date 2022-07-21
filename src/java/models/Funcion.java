@@ -104,16 +104,7 @@ public class Funcion {
             return false;
         }
         final Funcion other = (Funcion) obj;
-        if (!Objects.equals(this.horaDeFuncion_, other.horaDeFuncion_)) {
-            return false;
-        }
-        if (!Objects.equals(this.formato_, other.formato_)) {
-            return false;
-        }
-        if (!Objects.equals(this.pelicula_, other.pelicula_)) {
-            return false;
-        }
-        return Objects.equals(this.sala_, other.sala_);
+        return Objects.equals(this.horaDeFuncion_, other.horaDeFuncion_) && Objects.equals(this.sala_, other.sala_);
     }
 
 }

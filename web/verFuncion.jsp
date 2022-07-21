@@ -1,32 +1,42 @@
 <%@include file="header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${funcion != null}">
+<div class="container">
+    <div class="row">
+        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./VerPelicula?pelicula=${pelicula}'">Back to ${pelicula}</button>
+        <h1 class="col-7 d-flex mt-auto justify-content-center">${funcion.getPelicula().getNombre()} - 
+        <c:if test="${funcion.getPelicula().getPuntuacion() != 0}">
+            ${funcion.getPelicula().getPuntuacion()} points
+        </c:if>
+        <c:if test="${funcion.getPelicula().getPuntuacion() == 0}">
+            No votes
+        </c:if></h1>
+    </div>
     <table style=" text-align: center">
-        <tr>
-            <td><a>Nombre Pelicula</a></td>
-            <td><a>Numero Sala</a></td>
-            <td><a>Hora Funcion</a></td>
-            <td><a>Sillas Disponibles</a></td>
-            <td><a>Formato</a></td> 
-        </tr>
-        <tr>
-            <td><a>${funcion.getPelicula().getNombre()}</a></td>
-            <td><a>${funcion.getSala().getNumeroSala()}</a></td>
-            <td><a>${funcion.getHoraDeFuncion()}</a></td>
-            <td><a>${funcion.getSillasDisponibles().size()}</a></td>
-            <td><a>${funcion.getFormato()}</a></td>
-            <c:if test="${sessionScope.aPersona  != null}">
-                <td  style=" width: 15% ; text-align: center">
-                    <h4><a href="./Comprar?funcion=${funcion.getPelicula().concatenar(funcion.getPelicula(),funcion.getHoraDeFuncion())}">Obtener Tiquetes</a></h4>
-                </td>
-            </c:if>
-            <c:if test="${sessionScope.aPersona  == null}">
-                <td  style=" width: 15% ; text-align: center">
-                    <h4><a href="./LogIn">Obtener Tiquetes</a></h4>
-                </td>
-            </c:if>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Room</th>
+                <th scope="col">Time</th>
+                <th scope="col">Available seats</th>
+                <th scope="col">Format</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="funcionPelicula" items="${funciones}">
+                <tr>
+                    <td scope="row">${funcionPelicula.getSala().getNumeroSala()}</td>
+                    <td scope="row">${funcionPelicula.getHoraDeFuncion()}</td>
+                    <td scope="row">${funcionPelicula.getSillasDisponibles().size()}</td>
+                    <td scope="row">${funcionPelicula.getFormato()}</td>
+                    <c:if test="${sessionScope.aPersona  != null}">
+                        <td><a href="./Comprar?funcion=${funcion.getPelicula().concatenar(funcion.getPelicula(),funcion.getHoraDeFuncion())}">Get Ticket</a></td>
+                    </c:if>
+                    <c:if test="${sessionScope.aPersona  == null}">
+                        <td><a href="./LogIn">Get Ticket</a></td>
+                    </c:if>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
-</c:if>
-<a href="./VerPelicula?pelicula=${pelicula}">Volver</a>
+</div>
 <%@include file="footer.jsp" %>

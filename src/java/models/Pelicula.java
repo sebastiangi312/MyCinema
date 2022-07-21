@@ -29,7 +29,7 @@ public class Pelicula {
 
     public static Pelicula buscarPelicula(String nombre) {
         for (Pelicula pelicula : Pelicula.pelis) {
-            if (pelicula.getNombre().equals(nombre)) {
+            if (pelicula.getNombre().startsWith(nombre)) {
                 return pelicula;
             }
         }

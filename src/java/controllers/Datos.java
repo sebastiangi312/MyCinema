@@ -72,7 +72,6 @@ public class Datos extends HttpServlet {
                 
             
         }
-        Pelicula pelicula = Pelicula.buscarPelicula(request.getParameter("pelicula"));
         double valMaxima = 0;
         double valMinima = 100;
         Pelicula PVMaxima = null;

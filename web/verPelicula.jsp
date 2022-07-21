@@ -2,33 +2,33 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
-<table style=" text-align: center">
-    <tr>
-        <th width="180">Pelicula</th>
-        <th width="120">Puntuacion</th>
-        
-    </tr>
-        <tr>
-            <td>${pelicula.getNombre()}</td>
-            <c:if test="${pelicula.getPuntuacion() != 0}">
-            <td>${pelicula.getPuntuacion()}</td>
-            </c:if>
-            <c:if test="${pelicula.getPuntuacion() == 0}">
-            <td>Esta Pelicula no tiene votos</td>
-            </c:if>
-            <td>
-                <c:if test="${not empty pelicula.getListaFunciones_()}">
-                    <td width="160">Funciones Posibles:</td>
-                    <c:forEach var="funcionPelicula" items="${pelicula.getFunciones()}">
-                        <td><a href="./VerFuncion?funcionDePelicula=${pelicula.concatenar(pelicula,funcionPelicula.getHoraDeFuncion())}">${funcionPelicula.getHoraDeFuncion()}:00</a></td>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${empty pelicula.getListaFunciones_()}">
-                    <td><p>No se han asignado Funciones a esta pelicula<td></p>
-                </c:if>
-            </td>
-        </tr>
-</table>
-<a href="./PeliculasUsuario">Volver</a>
+<div class="container">
+    <div class="row">
+        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./PeliculasUsuario'">Back to Movies</button>
+        <h1 class="col-7 d-flex mt-auto justify-content-center">${pelicula.getNombre()} - 
+        <c:if test="${pelicula.getPuntuacion() != 0}">
+            ${pelicula.getPuntuacion()} points
+        </c:if>
+        <c:if test="${pelicula.getPuntuacion() == 0}">
+            No votes
+        </c:if></h1>
+    </div>
+    <table style=" text-align: center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Format</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="funcionPelicula" items="${pelicula.getFunciones()}">
+                <tr>
+                    <td scope="row">${funcionPelicula.getFormato()}</td>
+                    <td scope="row"><a href="./VerFuncion?funcionDePelicula=${pelicula.concatenar(pelicula,funcionPelicula.getHoraDeFuncion())}">${funcionPelicula.getHoraDeFuncion()}</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
 <%@include file="footer.jsp" %>

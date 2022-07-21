@@ -112,10 +112,10 @@ public class Persona {
     }
     public static void createInitialData(){
         Sala s = new Sala(1,20);
-        Pelicula p1=new Pelicula("see","Action",18);
-        new Funcion(p1,s,"12","3D");
-        new Persona("Danny","Puto","milos@hot.com","asd",18,"Administrador");
-        new Persona("Danny","Puto","u@hot.com","asd",18,"Usuario");
+        Pelicula p1=new Pelicula("Avengers","Action",18);
+        new Funcion(p1,s,"12:00","3D");
+        new Persona("Admin","Cinema","admin@hotmail.com","admin",18,"Administrador");
+        new Persona("User","Cinema","user@hotmail.com","user",18,"Usuario");
         
     }
     public static Persona mayorDinero(Persona p){

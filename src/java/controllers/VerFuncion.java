@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Funcion;
 import models.Pelicula;
 import java.util.*;
+import java.util.stream.Collectors;
 /**
  *
  * @author juan pablo cano
@@ -37,7 +38,9 @@ public class VerFuncion extends HttpServlet {
         String nombrePelicula = parts[0];
         String hora = parts[1];
         Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
+        ArrayList<Funcion> funciones = (ArrayList<Funcion>) Funcion.getFunciones().stream().filter(i -> i.getHoraDeFuncion().equals(hora)).collect(Collectors.toList());
         request.setAttribute("funcion", funcion);
+        request.setAttribute("funciones", funciones);
         request.setAttribute("pelicula", funcion.getPelicula().getNombre());
         RequestDispatcher view = request.getRequestDispatcher("verFuncion.jsp");
         view.forward(request, response);
