@@ -22,6 +22,8 @@ public class Funciones extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("funciones_", Funcion.getFunciones());
+        request.setAttribute("Pelis", Pelicula.pelis);
+        request.setAttribute("Salas", Sala.listaSala);
         
         RequestDispatcher view = request.getRequestDispatcher("funciones.jsp");
         view.forward(request, response);
@@ -36,19 +38,20 @@ public class Funciones extends HttpServlet {
         String horaDeFuncion = request.getParameter("horaDeFuncion");
         String formato = request.getParameter("formato");
         if(pelicula != null){
-            int aux = 0;
+            boolean isCrossing = false;
             for(Funcion funcion: pelicula.getFunciones()){
                 if(funcion.getHoraDeFuncion().equals(horaDeFuncion)){
-                    aux=1;
+                    isCrossing =true;
                 }
             }
-            if(aux == 0){
-                Funcion p = new Funcion(pelicula, sala, horaDeFuncion, formato);
+            if(!isCrossing){
+                new Funcion(pelicula, sala, horaDeFuncion, formato);
             }
         }
         
         request.setAttribute("funciones_", Funcion.getFunciones());
-        session.getAttribute("Pelis");
+        request.setAttribute("Pelis", Pelicula.pelis);
+        request.setAttribute("Salas", Sala.listaSala);
         RequestDispatcher view = request.getRequestDispatcher("funciones.jsp");
         view.forward(request, response);
     }

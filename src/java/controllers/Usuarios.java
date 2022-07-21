@@ -54,7 +54,7 @@ public class Usuarios extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        ArrayList<Personas> listaRegistros = (ArrayList<Personas>)session.getAttribute("listaRegistros");
+        ArrayList<Persona> listaRegistros = (ArrayList<Persona>)session.getAttribute("listaRegistros");
         RequestDispatcher view = request.getRequestDispatcher("usuarios.jsp");
         view.forward(request, response);
     }

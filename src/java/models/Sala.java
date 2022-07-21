@@ -42,4 +42,27 @@ public class Sala {
         this.funcionesDisponibles_.add(funcion);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + this.numeroSala_;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sala other = (Sala) obj;
+        return this.numeroSala_ == other.numeroSala_;
+    }
+
+    
 }

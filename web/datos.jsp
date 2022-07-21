@@ -1,84 +1,83 @@
 <%@include file="header.jsp" %>
-<table>
-    <tr>
-        <td>
-            <h3>Persona que utilizo mas dinero en el cine :</h3>
-        </td>
-        <td>
-            <c:if test="${MayorD.getNombre()== null}">
-                <h1> No se utilizado dinero aun.</h1>
-            </c:if>
-            <c:if test="${MayorD.getNombre() != null}">
-                <h1> ${MayorD.getNombre()} con una cantidad de ${MayorD.getDineroUtilizado()} dinero utilizado.</h1>
-            </c:if> 
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Ultima persona en reservar asientos :</h3>
-        </td>
-        <td>
-            <c:if test="${factura.getComprador()== null}">
-                <h1> No se han reservado asientos.</h1>
-            </c:if>
-            <c:if test="${factura.getComprador() != null}">
-                <h1> ${factura.getComprador()} con la factura numero ${factura.getId()} con una cantidad de ${factura.getPrecio()} dinero utilizado.</h1>
-            </c:if>
 
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Pelicula con mayor asistencia :</h3>
-        </td>
-        <td>
-            <c:if test="${PAsisMaxima.getNombre()== null}">
-                <h1> No han ingresado usuarios a las peliculas.</h1>
-            </c:if>
-            <c:if test="${PAsisMaxima.getNombre() != null}">
-                <h1>${PAsisMaxima.getNombre()} con una asistencia de: ${AsisMaxima} personas</h1>
-            </c:if>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Pelicula con menor asistencia :</h3>
-        </td>
-        <td>
-            <c:if test="${PAsisMinima.getNombre()== null}">
-                <h1> No han ingresado usuarios a las peliculas.</h1>
-            </c:if>
-            <c:if test="${PAsisMinima.getNombre() != null}">
-                <h1>${PAsisMinima.getNombre()} con una asistencia de: ${AsisMinima} personas</h1>
-            </c:if>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Pelicula con mejor valorada :</h3>
-        </td>
-        <td>
-            <c:if test="${PVMaxima.getNombre()== null}">
-                <h1> No han valorado la pelicula.</h1>
-            </c:if>
-            <c:if test="${PVMaxima.getNombre() != null}">
-                <h1>${PVMaxima.getNombre()} con una valoracion de: ${valMaxima} puntos</h1>
-            </c:if>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Pelicula con peor valorada :</h3>
-        </td>
-        <td>
-            <c:if test="${PVMinima.getNombre()== null}">
-                <h1> No han valorado la pelicula.</h1>
-            </c:if>
-            <c:if test="${PVMinima.getNombre() != null}">
-                <h1>${PVMinima.getNombre()} con una valoracion de: ${valMinima} puntos</h1>
-            </c:if>
-        </td>
-    </tr>
-
-</table>
+<div class="container">
+    <div class="row">
+        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./Home'">Back to Home</button>
+        <h1 class="col-7 d-flex mt-auto justify-content-center">Data</h1>
+    </div>
+    <div class="row align-items-start">
+        <div class="col-12 mx-auto">
+            <div class="card h-100 border-primary justify-content-center mt-5">
+                <div class="card-body">
+                        <div class="row">
+                            <h5 class="col-5">Person who used more money in the cinema:</h5>
+                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <c:if test="${MayorD.getNombre()== null}">
+                                No money used yet
+                            </c:if>
+                            <c:if test="${MayorD.getNombre()!= null}">
+                                ${MayorD.getNombre()} : ${MayorD.getDineroUtilizado()}
+                            </c:if>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-5">Last person to reserve seats:</h5>
+                            <p class="col-7 d-flex mt-auto justify-content-end">
+                                <c:if test="${factura.getComprador()== null}">
+                                    Seats have not been reserved
+                                </c:if>
+                                <c:if test="${factura.getComprador()!= null}">
+                                    ${factura.getComprador()} with the bill ${factura.getId()}
+                                </c:if>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-5">Most attended movie:</h5>
+                            <p class="col-7 d-flex mt-auto justify-content-end">
+                                <c:if test="${PAsisMaxima.getNombre()== null}">
+                                    No user has seen any movie
+                                </c:if>
+                                <c:if test="${PAsisMaxima.getNombre() != null}">
+                                    ${PAsisMaxima.getNombre()} with ${AsisMaxima} people
+                                </c:if>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-5">Lowest attended movie</h5>
+                            <p class="col-7 d-flex mt-auto justify-content-end">
+                                <c:if test="${PAsisMinima.getNombre()== null}">
+                                    No user has seen any movie
+                                </c:if>
+                                <c:if test="${PAsisMinima.getNombre() != null}">
+                                    ${PAsisMaxima.getNombre()} with ${AsisMinima} people
+                                </c:if>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-5">Best rated movie</h5>
+                            <p class="col-7 d-flex mt-auto justify-content-end">
+                                <c:if test="${PVMaxima.getNombre()== null}">
+                                    No movie has been rated
+                                </c:if>
+                                <c:if test="${PVMaxima.getNombre() != null}">
+                                    ${PVMaxima.getNombre()} with ${valMaxima} points
+                                </c:if>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <h5 class="col-5">Worst rated movie</h5>
+                            <p class="col-7 d-flex mt-auto justify-content-end">
+                                <c:if test="${PVMinima.getNombre()== null}">
+                                    No movie has been rated
+                                </c:if>
+                                <c:if test="${PVMinima.getNombre() != null}">
+                                    ${PVMinima.getNombre()} with ${valMinima} points
+                                </c:if>
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <%@include file="footer.jsp" %>

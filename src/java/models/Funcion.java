@@ -1,6 +1,4 @@
-
 package models;
-
 
 import java.util.*;
 
@@ -14,19 +12,20 @@ public class Funcion {
     private String formato_;
     private LinkedList<Integer> sillasDisponibles_ = new LinkedList<Integer>();
 
-   
     public Funcion(Pelicula pelicula, Sala sala, String horaDeFuncion, String formato) {
         this.pelicula_ = pelicula;
         this.sala_ = sala;
         this.horaDeFuncion_ = horaDeFuncion;
         this.formato_ = formato;
-        Funcion.funciones_.add(this);
-        sala.añadirFuncion(this);
-        pelicula.añadirFuncion(this);
-        crearTiquetes(sala.getCantidadSillas());
+        if (!funciones_.contains(this) && sala_.getNumeroSala() != 0) {
+            Funcion.funciones_.add(this);
+            sala.añadirFuncion(this);
+            pelicula.añadirFuncion(this);
+            crearTiquetes(sala.getCantidadSillas());
+        }
     }
 
-     public ArrayList<Tiquete> getListaTiquetes() {
+    public ArrayList<Tiquete> getListaTiquetes() {
         return listaTiquetes;
     }
 
@@ -37,10 +36,11 @@ public class Funcion {
     public Pelicula getPelicula() {
         return pelicula_;
     }
-    
-    public Sala getSala(){
+
+    public Sala getSala() {
         return sala_;
     }
+
     public String getHoraDeFuncion() {
         return horaDeFuncion_;
     }
@@ -53,16 +53,15 @@ public class Funcion {
     private void crearTiquetes(int sillas) {
         for (int i = 0; i < sillas; i++) {
             if (this.formato_.equals("2D")) {
-                this.listaTiquetes.add(new Tiquete(this, i + 1,4000));
-            }
-            else if(this.formato_.equals("3D")){
-                this.listaTiquetes.add(new Tiquete(this, i + 1,6000));
-            }else{
-                this.listaTiquetes.add(new Tiquete(this, i + 1,10000));
+                this.listaTiquetes.add(new Tiquete(this, i + 1, 4000));
+            } else if (this.formato_.equals("3D")) {
+                this.listaTiquetes.add(new Tiquete(this, i + 1, 6000));
+            } else {
+                this.listaTiquetes.add(new Tiquete(this, i + 1, 10000));
             }
         }
         for (int i = 0; i < this.sala_.getCantidadSillas(); i++) {
-            this.sillasDisponibles_.add(i+1);
+            this.sillasDisponibles_.add(i + 1);
         }
     }
 
@@ -73,13 +72,48 @@ public class Funcion {
     public String getFormato() {
         return formato_;
     }
-    
-    public Tiquete buscarTiquete(int numeroSilla){
-        for(Tiquete tiquete: this.listaTiquetes){
-            if(tiquete.getSilla()==numeroSilla){
+
+    public Tiquete buscarTiquete(int numeroSilla) {
+        for (Tiquete tiquete : this.listaTiquetes) {
+            if (tiquete.getSilla() == numeroSilla) {
                 return tiquete;
             }
         }
         return null;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.pelicula_);
+        hash = 83 * hash + Objects.hashCode(this.sala_);
+        hash = 83 * hash + Objects.hashCode(this.horaDeFuncion_);
+        hash = 83 * hash + Objects.hashCode(this.formato_);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Funcion other = (Funcion) obj;
+        if (!Objects.equals(this.horaDeFuncion_, other.horaDeFuncion_)) {
+            return false;
+        }
+        if (!Objects.equals(this.formato_, other.formato_)) {
+            return false;
+        }
+        if (!Objects.equals(this.pelicula_, other.pelicula_)) {
+            return false;
+        }
+        return Objects.equals(this.sala_, other.sala_);
+    }
+
 }

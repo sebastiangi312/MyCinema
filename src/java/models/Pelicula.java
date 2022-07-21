@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Pelicula {
 
@@ -15,15 +16,15 @@ public class Pelicula {
     private ArrayList<Integer> votos = new ArrayList<>();
 
     public Pelicula(String nombre, String genero, int edad) {
-        if (buscarPelicula(nombre) == null) {
             this.nombre_ = nombre;
             this.sinopsis_ = "";
             this.genero_ = genero;
             this.edad_ = edad;
             this.puntuacion_ = getPuntuacion();
+        if (!Pelicula.pelis.contains(this)) {
             Pelicula.pelis.add(this);
-            this.asistencia_ = 0;
         }
+            this.asistencia_ = 0;
     }
 
     public static Pelicula buscarPelicula(String nombre) {
@@ -141,4 +142,36 @@ public class Pelicula {
             return puntuacion_;
         }
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + Objects.hashCode(this.nombre_);
+        hash = 13 * hash + Objects.hashCode(this.genero_);
+        hash = 13 * hash + this.edad_;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pelicula other = (Pelicula) obj;
+        if (this.edad_ != other.edad_) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre_, other.nombre_)) {
+            return false;
+        }
+        return Objects.equals(this.genero_, other.genero_);
+    }
+    
+    
 }

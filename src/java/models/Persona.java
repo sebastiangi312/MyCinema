@@ -104,15 +104,15 @@ public class Persona {
 
     public static Persona buscarPersona(String Nombre, ArrayList<Persona> lista) {
         for (Persona p : lista) {
-            if (p.getNombre().equals(Nombre) || p.getCorreo() == Nombre) {
+            if (p.getNombre().equals(Nombre) || p.getCorreo().equals(Nombre)) {
                 return p;
             }
         }
         return null;
     }
-    public static void DatosFicticios(){
+    public static void createInitialData(){
         Sala s = new Sala(1,20);
-        Pelicula p1=new Pelicula("see","Accion",18);
+        Pelicula p1=new Pelicula("see","Action",18);
         new Funcion(p1,s,"12","3D");
         new Persona("Danny","Puto","milos@hot.com","asd",18,"Administrador");
         new Persona("Danny","Puto","u@hot.com","asd",18,"Usuario");

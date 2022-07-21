@@ -47,12 +47,13 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Persona.DatosFicticios();
+        getInitialData(request);
         if (null != session.getAttribute("aPersona")) {
             Persona aPersona = (Persona) session.getAttribute("aPersona");
             if (aPersona.getTipo().equals("Administrador")) {
                 RequestDispatcher view = request.getRequestDispatcher("homeAdmin.jsp");
                 view.forward(request, response);
+                return;
             }
         }
         RequestDispatcher view = request.getRequestDispatcher("home.jsp");
@@ -68,5 +69,14 @@ public class Home extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void getInitialData(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Persona.createInitialData();
+        if (null == session.getAttribute("listaRegistros")) {
+            request.setAttribute("listaRegistros", Persona.getListaPersonas());
+            session.setAttribute("listaRegistros", Persona.getListaPersonas());
+        }
     }
 }

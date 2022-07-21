@@ -82,7 +82,7 @@ public class Datos extends HttpServlet {
                 valMaxima =  peli.getPuntuacion();
                 PVMaxima = peli;
             }
-            if(valMinima > peli.getPuntuacion()){
+            if(valMinima >= peli.getPuntuacion() && peli.getPuntuacion() != 0){
                 valMinima = peli.getPuntuacion();
                 PVMinima = peli;
             }

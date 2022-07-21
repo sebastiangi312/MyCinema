@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/web/funciones.jsp</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/models/Funcion.java</file>
             <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/web/peliculas.jsp</file>
-            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/controllers/Peliculas.java</file>
-            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/web/home.jsp</file>
-            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/web/footer.jsp</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/models/Sala.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/web/datos.jsp</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/controllers/Personas.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/models/Pelicula.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/controllers/Funciones.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/CinemaNetbeans/src/java/models/Persona.java</file>
         </group>
     </open-files>
 </project-private>

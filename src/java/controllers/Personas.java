@@ -63,7 +63,8 @@ public class Personas extends HttpServlet {
         Persona p = new Persona(nombre, apellido, correo, clave, edad, AoU);
         request.setAttribute("listaRegistros", Persona.getListaPersonas());
         session.setAttribute("listaRegistros", Persona.getListaPersonas());
-        RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
+        
+        RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
         view.forward(request, response);
     }
 
