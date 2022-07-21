@@ -4,11 +4,11 @@
 
 <div class="container">
     <div class="row">
-        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./Home'">Back to Home</button>
-        <h1 class="col-7 d-flex mt-auto justify-content-center">Tickets</h1>
+        <button class="col-12 col-lg-1 btn btn-outline-primary me-2 mt-2" onclick="window.location.href='./Home'">Back to Home</button>
+        <h1 class="col-12 col-lg-7 d-flex mt-2 justify-content-center">Tickets</h1>
     </div>
     <div class="row align-items-start">
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
             <div class="card h-100 border-primary justify-content-center mt-5">
                 <div class="card-body">
                     <h1 class="card-title d-flex mt-auto justify-content-center">Create ShowTime</h1>
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6  mt-5">
+        <div class="col-12 col-lg-6  mt-5">
             <c:if test="${not empty Pelis}">
                 <table style=" text-align: center">
                 <table class="table">

@@ -1,11 +1,11 @@
 <%@include file="header.jsp" %>
 <div class="container">
     <div class="row">
-        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./VotarPeliculas'">Back to Movies</button>
-        <h1 class="col-7 d-flex mt-auto justify-content-center">Vote Movie</h1>
+        <button class="col-12 col-lg-1 btn btn-outline-primary me-2 mt-2" onclick="window.location.href='./VotarPeliculas'">Back to Movies</button>
+        <h1 class="col-12 col-lg-7 d-flex mt-2 justify-content-center">Vote Movie</h1>
     </div>
     <div class="row align-items-center">
-        <div class="col-4 mx-auto">
+        <div class="col-lg-4 col-12 mx-auto">
             <div class="card h-100 border-primary justify-content-center mt-5">
                 <div class="card-body">
                     <form method="POST" action="./VotarPeliculax?pelicula=${pelicula.getNombre()}">

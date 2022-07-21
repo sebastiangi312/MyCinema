@@ -4,8 +4,8 @@
 
 <div class="container">
     <div class="row">
-        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./PeliculasUsuario'">Back to Movies</button>
-        <h1 class="col-7 d-flex mt-auto justify-content-center">${pelicula.getNombre()} - 
+        <button class="col-12 col-lg-1 btn btn-outline-primary me-2 mt-2" onclick="window.location.href='./PeliculasUsuario'">Back to Movies</button>
+        <h1 class="col-12 col-lg-7 d-flex mt-2 justify-content-center">${pelicula.getNombre()} - 
         <c:if test="${pelicula.getPuntuacion() != 0}">
             ${pelicula.getPuntuacion()} points
         </c:if>

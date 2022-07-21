@@ -1,8 +1,8 @@
 <%@include file="header.jsp" %>
 <div class="container">
     <div class="row">
-        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./Home'">Back to Home</button>
-        <h1 class="col-7 d-flex mt-auto justify-content-center">Movies</h1>
+        <button class="col-12 col-lg-1 btn btn-outline-primary me-2 mt-2" onclick="window.location.href='./Home'">Back to Home</button>
+        <h1 class="col-12 col-lg-7 d-flex mt-2 justify-content-center">Movies</h1>
     </div>
     <table class="table">
         <thead>

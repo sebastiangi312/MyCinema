@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="container">
     <div class="row">
-        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./VerPelicula?pelicula=${pelicula}'">Back to ${pelicula}</button>
-        <h1 class="col-7 d-flex mt-auto justify-content-center">${funcion.getPelicula().getNombre()} - 
+        <button class="col-12 col-lg-1 btn btn-outline-primary me-2 mt-2" onclick="window.location.href='./VerPelicula?pelicula=${pelicula}'">Back to ${pelicula}</button>
+        <h1 class="col-12 col-lg-7 d-flex mt-2 justify-content-center">${funcion.getPelicula().getNombre()} - 
         <c:if test="${funcion.getPelicula().getPuntuacion() != 0}">
             ${funcion.getPelicula().getPuntuacion()} points
         </c:if>

@@ -41,6 +41,7 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        getInitialData(request);
         RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
         view.forward(request, response);
     }
@@ -79,4 +80,12 @@ public class LogIn extends HttpServlet {
         return "Short description";
     }
 
+    private void getInitialData(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Persona.createInitialData();
+        if (null == session.getAttribute("listaRegistros")) {
+            request.setAttribute("listaRegistros", Persona.getListaPersonas());
+            session.setAttribute("listaRegistros", Persona.getListaPersonas());
+        }
+    }
 }

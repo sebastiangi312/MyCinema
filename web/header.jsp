@@ -16,10 +16,10 @@
                 <div class="float-end">
                     
                     <c:if test="${sessionScope.aPersona  == null}">
-                        <button class="btn btn-outline-info"   onclick="window.location.href='./Personas';">
+                        <button class="btn btn-light"  onclick="window.location.href='./Personas';">
                          Register
                         </button> 
-                        <button class="btn btn-outline-success"  onclick="window.location.href='./LogIn';">
+                        <button class="btn btn-light"  onclick="window.location.href='./LogIn';">
                          Login
                         </button> 
                     </c:if>

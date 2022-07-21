@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row align-items-start">
-        <div class="col-4 mx-auto">
+        <div class="col-lg-4 col-12 mx-auto">
             <div class="card h-100 border-primary justify-content-center mt-5">
                 <div class="card-body">
                     <h1 class="card-title d-flex mt-auto justify-content-center">Profile</h1>

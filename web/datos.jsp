@@ -2,16 +2,16 @@
 
 <div class="container">
     <div class="row">
-        <button class=" col-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./Home'">Back to Home</button>
-        <h1 class="col-7 d-flex mt-auto justify-content-center">Data</h1>
+        <button class=" col-12 col-lg-1 btn btn-outline-primary me-2 mt-2"  onclick="window.location.href='./Home'">Back to Home</button>
+        <h1 class="col-12 col-lg-7 d-flex mt-2 justify-content-center">Data</h1>
     </div>
     <div class="row align-items-start">
         <div class="col-12 mx-auto">
             <div class="card h-100 border-primary justify-content-center mt-5">
                 <div class="card-body">
                         <div class="row">
-                            <h5 class="col-5">Person who used more money in the cinema:</h5>
-                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <h5 class="col-12 col-lg-5">Person who used more money in the cinema:</h5>
+                            <p class="col-12 col-lg-7 d-flex mt-auto justify-content-end">
                             <c:if test="${MayorD.getNombre()== null}">
                                 No money used yet
                             </c:if>
@@ -21,8 +21,8 @@
                             </p>
                         </div>
                         <div class="row">
-                            <h5 class="col-5">Last person to reserve seats:</h5>
-                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <h5 class="col-12 col-lg-5">Last person to reserve seats:</h5>
+                            <p class="col-12 col-lg-7 d-flex mt-auto justify-content-end">
                                 <c:if test="${factura.getComprador()== null}">
                                     Seats have not been reserved
                                 </c:if>
@@ -32,8 +32,8 @@
                             </p>
                         </div>
                         <div class="row">
-                            <h5 class="col-5">Most attended movie:</h5>
-                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <h5 class="col-12 col-lg-5">Most attended movie:</h5>
+                            <p class="col-12 col-lg-7 d-flex mt-auto justify-content-end">
                                 <c:if test="${PAsisMaxima.getNombre()== null}">
                                     No user has seen any movie
                                 </c:if>
@@ -43,8 +43,8 @@
                             </p>
                         </div>
                         <div class="row">
-                            <h5 class="col-5">Lowest attended movie</h5>
-                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <h5 class="col-12 col-lg-5">Lowest attended movie</h5>
+                            <p class="col-12 col-lg-7 d-flex mt-auto justify-content-end">
                                 <c:if test="${PAsisMinima.getNombre()== null}">
                                     No user has seen any movie
                                 </c:if>
@@ -54,8 +54,8 @@
                             </p>
                         </div>
                         <div class="row">
-                            <h5 class="col-5">Best rated movie</h5>
-                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <h5 class="col-12 col-lg-5">Best rated movie</h5>
+                            <p class="col-12 col-lg-7 d-flex mt-auto justify-content-end">
                                 <c:if test="${PVMaxima.getNombre()== null}">
                                     No movie has been rated
                                 </c:if>
@@ -65,8 +65,8 @@
                             </p>
                         </div>
                         <div class="row">
-                            <h5 class="col-5">Worst rated movie</h5>
-                            <p class="col-7 d-flex mt-auto justify-content-end">
+                            <h5 class="col-12 col-lg-5">Worst rated movie</h5>
+                            <p class="col-12 col-lg-7 d-flex mt-auto justify-content-end">
                                 <c:if test="${PVMinima.getNombre()== null}">
                                     No movie has been rated
                                 </c:if>
