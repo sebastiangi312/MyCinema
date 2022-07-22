@@ -6,7 +6,7 @@ Technologies:
    * Tomcat 8.5
    * EC2 AWS
 
-[Link](http://3.92.44.215:8080/Cinema/Home) to EC2 Running the application)
+[Link](http://3.92.44.215:8080/Cinema/Home) to EC2 Running the application.
 
 Application to simulate the management of a cinema, in this there are two types of users: Users/customers and Administrators.
 
