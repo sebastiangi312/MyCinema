@@ -1,7 +1,7 @@
 # Cinema
 
 Technologies:
-   * JSP 3.1
+   * Java/JSP 3.1
    * Bootstrap 5.2
    * Tomcat 8.5
    * EC2 AWS
