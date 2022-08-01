@@ -14,16 +14,10 @@ import models.Persona;
 @WebServlet(name = "LogIn", urlPatterns = {"/LogIn"})
 public class LogIn extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getInitialData(request);
+        Singleton.getInitialData(request);
         RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
         view.forward(request, response);
     }
@@ -31,43 +25,39 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String correo = request.getParameter("correo");
-        String clave = request.getParameter("clave");
-        Persona usuarioIngresado = Persona.buscarPorCorreo(correo);
-        if(usuarioIngresado != null){
-            if(usuarioIngresado.getClave().equals(clave)){
-                session.setAttribute("aPersona", usuarioIngresado);
-                if(usuarioIngresado.getTipo().equals("Usuario")){
-                    RequestDispatcher view = request.getRequestDispatcher("home.jsp");
-                    view.forward(request, response);
-                }else{
-                    RequestDispatcher view = request.getRequestDispatcher("homeAdmin.jsp");
-                    view.forward(request, response);
-                }
-            }else{
-                request.setAttribute("error", "password");
-                RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
-                view.forward(request, response);
-            }
-        }else{
-            request.setAttribute("error", "usuario");
-            RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
-            view.forward(request, response);
+        RequestDispatcher view;
+
+        Persona user = getUser(request);
+        if (isUserValid(request, user)) {
+            view = getViewByUserType(request, user.getTipo());
+        } else {
+            request.setAttribute("error", "error");
+            view = request.getRequestDispatcher("logIn.jsp");
         }
+        view.forward(request, response);
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
+    private Persona getUser(HttpServletRequest request) {
+        String email = request.getParameter("correo");
+        Persona user = Persona.buscarPorCorreo(email);
+        return user;
     }
 
-    private void getInitialData(HttpServletRequest request){
+    private boolean isUserValid(HttpServletRequest request, Persona user) {
         HttpSession session = request.getSession();
-        Singleton.initializeExampleData();
-        if (null == session.getAttribute("listaRegistros")) {
-            request.setAttribute("listaRegistros", Persona.getListaPersonas());
-            session.setAttribute("listaRegistros", Persona.getListaPersonas());
+        String password = request.getParameter("clave");
+        if (user != null && user.getClave().equals(password)) {
+            session.setAttribute("aPersona", user);
+            return true;
         }
+        session.setAttribute("aPersona", null);
+        return false;
+    }
+
+    private RequestDispatcher getViewByUserType(HttpServletRequest request, String userType) {
+        if (userType.equals("Usuario")) {
+            return request.getRequestDispatcher("home.jsp");
+        }
+        return request.getRequestDispatcher("homeAdmin.jsp");
     }
 }

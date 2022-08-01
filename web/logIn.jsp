@@ -20,13 +20,8 @@
                     </form>
                     <c:if test="${error != null}">
                         <c:set var="var" value="usuario"/>  
-                        <c:if test="${error == var}">
-                            <p>The email is not registered</p>
-                        </c:if>
                         <c:set var="var" value="password"/>  
-                        <c:if test="${error == var}">
-                            <p>Incorrect password</p>
-                        </c:if>
+                        <p>Invalid User </p>
                     </c:if>
                 </div>
             </div>
