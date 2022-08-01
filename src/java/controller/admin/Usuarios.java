@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,14 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Funcion;
+import models.Persona;
 
 /**
  *
  * @author juan pablo cano
  */
-@WebServlet(name = "Reservar", urlPatterns = {"/Reservar"})
-public class Reservar extends HttpServlet {
+@WebServlet(name = "Usuarios", urlPatterns = {"/Usuarios"})
+public class Usuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,6 +37,7 @@ public class Reservar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
         }
     }
 
@@ -54,33 +54,23 @@ public class Reservar extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<Integer> sillasDisponibles_ = new ArrayList<Integer>();
-        if (null != session.getAttribute("Funciones")) {
-            sillasDisponibles_ = (ArrayList<Integer>) session.getAttribute("Funciones");
-        }
-        request.setAttribute("sillasDisponibles_", sillasDisponibles_);
-        RequestDispatcher view = request.getRequestDispatcher("reservar.jsp");
+        ArrayList<Persona> listaRegistros = (ArrayList<Persona>)session.getAttribute("listaRegistros");
+        RequestDispatcher view = request.getRequestDispatcher("usuarios.jsp");
         view.forward(request, response);
-        
-        
     }
-    
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        List<Integer> sillasDisponibles_ = new ArrayList<Integer>();
-        if (null != session.getAttribute("Funciones")) {
-            sillasDisponibles_ = (ArrayList<Integer>) session.getAttribute("Reservar");
-        }
-        int p = Integer.parseInt(request.getParameter("numSilla"));
-        sillasDisponibles_.remove(p+1);
-        session.setAttribute("Funciones", sillasDisponibles_);
-        request.setAttribute("sillasDisponibles_", sillasDisponibles_);
-        RequestDispatcher view = request.getRequestDispatcher("reservar.jsp");
-        view.forward(request, response);
+        processRequest(request, response);
     }
 
     /**

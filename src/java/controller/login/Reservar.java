@@ -1,10 +1,10 @@
-package controllers;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller.login;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Persona;
+import models.Funcion;
 
 /**
  *
  * @author juan pablo cano
  */
-@WebServlet(urlPatterns = {"/Home"})
-public class Home extends HttpServlet {
+@WebServlet(name = "Reservar", urlPatterns = {"/Reservar"})
+public class Reservar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +34,13 @@ public class Home extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -47,36 +54,43 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        getInitialData(request);
-        if (null != session.getAttribute("aPersona")) {
-            Persona aPersona = (Persona) session.getAttribute("aPersona");
-            if (aPersona.getTipo().equals("Administrador")) {
-                RequestDispatcher view = request.getRequestDispatcher("homeAdmin.jsp");
-                view.forward(request, response);
-                return;
-            }
+        List<Integer> sillasDisponibles_ = new ArrayList<Integer>();
+        if (null != session.getAttribute("Funciones")) {
+            sillasDisponibles_ = (ArrayList<Integer>) session.getAttribute("Funciones");
         }
-        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+        request.setAttribute("sillasDisponibles_", sillasDisponibles_);
+        RequestDispatcher view = request.getRequestDispatcher("reservar.jsp");
         view.forward(request, response);
-
+        
+        
     }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HttpSession session = request.getSession();
+        List<Integer> sillasDisponibles_ = new ArrayList<Integer>();
+        if (null != session.getAttribute("Funciones")) {
+            sillasDisponibles_ = (ArrayList<Integer>) session.getAttribute("Reservar");
+        }
+        int p = Integer.parseInt(request.getParameter("numSilla"));
+        sillasDisponibles_.remove(p+1);
+        session.setAttribute("Funciones", sillasDisponibles_);
+        request.setAttribute("sillasDisponibles_", sillasDisponibles_);
+        RequestDispatcher view = request.getRequestDispatcher("reservar.jsp");
+        view.forward(request, response);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    private void getInitialData(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        Persona.createInitialData();
-        if (null == session.getAttribute("listaRegistros")) {
-            request.setAttribute("listaRegistros", Persona.getListaPersonas());
-            session.setAttribute("listaRegistros", Persona.getListaPersonas());
-        }
-    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }
