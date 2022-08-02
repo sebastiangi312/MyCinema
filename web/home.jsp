@@ -23,17 +23,5 @@
         </div>
         </c:if>
     </div>
-    <div class="row">
-       <div class="card col-lg-3 col-12 mt-3">
-           <div class="card-body">
-    <h5 class="card-title">Credentials Client</h5>
-    <p class="card-text">email: user@hotmail.com <br>password: user</p>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Credentials Admin</h5>
-    <p class="card-text">email: admin@hotmail.com <br>password: admin</p>
-  </div>
-</div>
-</div>
 </div>
 <%@include file="footer.jsp" %>

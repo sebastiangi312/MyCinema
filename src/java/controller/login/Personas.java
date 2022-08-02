@@ -1,4 +1,3 @@
-
 package controller.login;
 
 import controller.Singleton;
@@ -19,8 +18,7 @@ public class Personas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getInitialData(request);
-        request.setAttribute("listaRegistros", Persona.getListaPersonas());
+        Singleton.getInitialData(request);
         RequestDispatcher view = request.getRequestDispatcher("registropersonas.jsp");
         view.forward(request, response);
     }
@@ -28,37 +26,25 @@ public class Personas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String correo = request.getParameter("correo");
-        String clave = request.getParameter("clave");
-        int edad = Integer.parseInt(request.getParameter("edad"));
-        String AoU = request.getParameter("Admin/Usuario");
-        Persona p = new Persona(nombre, apellido, correo, clave, edad, AoU);
-        request.setAttribute("listaRegistros", Persona.getListaPersonas());
-        session.setAttribute("listaRegistros", Persona.getListaPersonas());
-        
+        createUser(request);
+        updateRegister(request);
         RequestDispatcher view = request.getRequestDispatcher("logIn.jsp");
         view.forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private void createUser(HttpServletRequest request) {
+        String name = request.getParameter("nombre");
+        String lastName = request.getParameter("apellido");
+        String email = request.getParameter("correo");
+        String password = request.getParameter("clave");
+        int age = Integer.parseInt(request.getParameter("edad"));
+        String userType = request.getParameter("Admin/Usuario");
+        Persona newUser = new Persona(name, lastName, email, password, age, userType);
+    }
 
-    private void getInitialData(HttpServletRequest request){
+    private void updateRegister(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Singleton.initializeExampleData();
-        if (null == session.getAttribute("listaRegistros")) {
-            request.setAttribute("listaRegistros", Persona.getListaPersonas());
-            session.setAttribute("listaRegistros", Persona.getListaPersonas());
-        }
+        request.setAttribute("listaRegistros", Persona.getListaPersonas());
+        session.setAttribute("listaRegistros", Persona.getListaPersonas());
     }
 }

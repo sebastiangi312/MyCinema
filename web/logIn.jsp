@@ -3,8 +3,18 @@
 
 <div class="container">
     <div class="row align-items-center">
-        <div class="col-10 col-lg-4 mx-auto">
-            <div class="card h-100 border-primary justify-content-center mt-5">
+        <div class="card col-lg-3 col-12 mt-3 me-5">
+            <div class="card-body">
+                <h5 class="card-title">Credentials Client</h5>
+                <p class="card-text">email: user@hotmail.com <br>password: user</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Credentials Admin</h5>
+                <p class="card-text">email: admin@hotmail.com <br>password: admin</p>
+            </div>
+        </div>
+        <div class="col-10 col-lg-4 ms-5">
+            <div class="card h-50 border-primary justify-content-center mt-5">
                 <div class="card-body">
                     <h1 class="card-title d-flex mt-auto justify-content-center">Login</h1>
                     <form method="POST" action="./LogIn">
@@ -20,13 +30,8 @@
                     </form>
                     <c:if test="${error != null}">
                         <c:set var="var" value="usuario"/>  
-                        <c:if test="${error == var}">
-                            <p>The email is not registered</p>
-                        </c:if>
                         <c:set var="var" value="password"/>  
-                        <c:if test="${error == var}">
-                            <p>Incorrect password</p>
-                        </c:if>
+                        <p>Invalid User </p>
                     </c:if>
                 </div>
             </div>

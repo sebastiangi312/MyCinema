@@ -104,9 +104,9 @@ public class Pelicula {
         this.asistencia_ = asistencia_;
     }
 
-    public int aumentarAsistencia(Pelicula pelicula) {
+    public int aumentarAsistencia() {
         int asistencia = 0;
-        for (Funcion funcion : pelicula.getFunciones()) {
+        for (Funcion funcion : listaFunciones_) {
             asistencia = funcion.getListaTiquetes().size()- funcion.getSillasDisponibles().size();    
         }
         setAsistencia(asistencia);

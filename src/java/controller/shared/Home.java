@@ -19,21 +19,12 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        getInitialData(request);
+        Singleton.getInitialData(request);
 
         String userType = getUserType(session);
         RequestDispatcher view = getViewByUserType(request, userType);
         view.forward(request, response);
 
-    }
-
-    private void getInitialData(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Singleton.initializeExampleData();
-        if (null == session.getAttribute("listaRegistros")) {
-            request.setAttribute("listaRegistros", Persona.getListaPersonas());
-            session.setAttribute("listaRegistros", Persona.getListaPersonas());
-        }
     }
 
     private String getUserType(HttpSession session) {

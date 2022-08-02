@@ -41,6 +41,7 @@ public class Persona {
         dineroUtilizado_ = dineroUtilizado_+gasto;
         return dineroUtilizado_;
     }
+    
     public String getNombre() {
         return nombre_;
     }
