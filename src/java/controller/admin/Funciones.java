@@ -1,9 +1,6 @@
 package controller.admin;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +21,7 @@ public class Funciones extends HttpServlet {
         request.setAttribute("funciones_", Funcion.getFunciones());
         request.setAttribute("Pelis", Pelicula.pelis);
         request.setAttribute("Salas", Sala.listaSala);
-        
+
         RequestDispatcher view = request.getRequestDispatcher("funciones.jsp");
         view.forward(request, response);
     }
@@ -32,23 +29,21 @@ public class Funciones extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Pelicula pelicula = Pelicula.buscarPelicula(request.getParameter("pelicula"));
-        Sala sala = Sala.buscarSala(Integer.parseInt(request.getParameter("numSala")));
-        String horaDeFuncion = request.getParameter("horaDeFuncion");
-        String formato = request.getParameter("formato");
-        if(pelicula != null){
-            boolean isCrossing = false;
-            for(Funcion funcion: pelicula.getFunciones()){
-                if(funcion.getHoraDeFuncion().equals(horaDeFuncion)){
-                    isCrossing =true;
-                }
-            }
-            if(!isCrossing){
-                new Funcion(pelicula, sala, horaDeFuncion, formato);
+        Pelicula movie = Pelicula.buscarPelicula(request.getParameter("pelicula"));
+        Sala room = Sala.buscarSala(Integer.parseInt(request.getParameter("numSala")));
+        String hour = request.getParameter("horaDeFuncion");
+        String format = request.getParameter("formato");
+        
+        boolean isCrossing = false;
+        for (Funcion funcion : movie.getFunciones()) {
+            if (funcion.getHoraDeFuncion().equals(hour)) {
+                isCrossing = true;
             }
         }
-        
+        if (!isCrossing) {
+            Funcion showTime = new Funcion(movie, room, hour, format);
+        }
+
         request.setAttribute("funciones_", Funcion.getFunciones());
         request.setAttribute("Pelis", Pelicula.pelis);
         request.setAttribute("Salas", Sala.listaSala);

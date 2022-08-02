@@ -90,13 +90,14 @@ public class Comprar extends HttpServlet {
                 showTime.getSillasDisponibles().remove(showTime.getSillasDisponibles().indexOf(ticket.getSilla()));
             }
         }
-        user.compraRealizada(bill.getPrecio());
-        Persona MayorD = Persona.mayorDinero(user);
+        showTime.getPelicula().aumentarAsistencia();
         
         session.setAttribute("tiquetesComprados", purchasedTickets);
         request.setAttribute("sillasDisponibles", showTime.getSillasDisponibles());
         request.setAttribute("factura", bill);
         session.setAttribute("factura", bill);
+        
+        Persona MayorD = Persona.mayorDinero(user);
         if (MayorD != null) {
             session.setAttribute("MayorD", MayorD);
         }
