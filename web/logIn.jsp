@@ -3,8 +3,18 @@
 
 <div class="container">
     <div class="row align-items-center">
-        <div class="col-10 col-lg-4 mx-auto">
-            <div class="card h-100 border-primary justify-content-center mt-5">
+        <div class="card col-lg-3 col-12 mt-3 me-5">
+            <div class="card-body">
+                <h5 class="card-title">Credentials Client</h5>
+                <p class="card-text">email: user@hotmail.com <br>password: user</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Credentials Admin</h5>
+                <p class="card-text">email: admin@hotmail.com <br>password: admin</p>
+            </div>
+        </div>
+        <div class="col-10 col-lg-4 ms-5">
+            <div class="card h-50 border-primary justify-content-center mt-5">
                 <div class="card-body">
                     <h1 class="card-title d-flex mt-auto justify-content-center">Login</h1>
                     <form method="POST" action="./LogIn">
