@@ -17,11 +17,12 @@
                     <form method="POST" action="./PeliculasUsuario">
                         <div class="form-group mt-4">
                             <label  for="numSala">Search Movie:</label>
-                            <input class="justify-content-end" type="text" name="pelibuscada" id="pelibuscada" required /><br /><br />
+                            <input class="justify-content-end" type="text" name="pelibuscada" id="pelibuscada" /><br /><br />
                         </div>
                         <div class="form-group mt-2">
                             <label for="numSillas">Type:</label>
                             <select name="genero" id="genero">
+                                <option value="Todos">All</option> 
                                 <option value="Action">Action</option> 
                                 <option value="Adventure">Adventure</option>    
                                 <option value="Science fiction">Science fiction</option>

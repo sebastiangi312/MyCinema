@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller.user;
 
 import java.io.IOException;
@@ -16,53 +12,28 @@ import models.Funcion;
 import models.Pelicula;
 import java.util.*;
 import java.util.stream.Collectors;
-/**
- *
- * @author juan pablo cano
- */
+
 @WebServlet(name = "VerFuncion", urlPatterns = {"/VerFuncion"})
 public class VerFuncion extends HttpServlet {
-
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String peliculaHora =  request.getParameter("funcionDePelicula");
-        String[] parts = peliculaHora.split("-");
-        String nombrePelicula = parts[0];
-        String hora = parts[1];
-        Funcion funcion = Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
-        ArrayList<Funcion> funciones = (ArrayList<Funcion>) Funcion.getFunciones().stream().filter(i -> i.getHoraDeFuncion().equals(hora)).collect(Collectors.toList());
-        request.setAttribute("funcion", funcion);
-        request.setAttribute("funciones", funciones);
-        request.setAttribute("pelicula", funcion.getPelicula().getNombre());
+        Funcion showTime = getShowTime(request);
+        List<Funcion> showTimes =  Funcion.getFunciones().stream().filter(i -> i.getHoraDeFuncion().equals(showTime.getHoraDeFuncion()))
+                                                                  .collect(Collectors.toList());
+        request.setAttribute("funcion", showTime);
+        request.setAttribute("funciones", showTimes);
+        request.setAttribute("pelicula", showTime.getPelicula().getNombre());
         RequestDispatcher view = request.getRequestDispatcher("verFuncion.jsp");
         view.forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    private Funcion getShowTime(HttpServletRequest request){
+        String peliculaHora =  request.getParameter("funcionDePelicula");
+        String[] parts = peliculaHora.split("-");
+        String nombrePelicula = parts[0];
+        String hora = parts[1];
+        return Pelicula.buscarFuncion(Pelicula.buscarPelicula(nombrePelicula), hora);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
